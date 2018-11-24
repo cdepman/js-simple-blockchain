@@ -1,5 +1,5 @@
 const sha256 = require('sha256');
-  
+
 class Block {
   constructor(index, timestamp, data, prevHash){
     this.index = index;
@@ -7,6 +7,13 @@ class Block {
     this.data = data;
     this.prevHash = prevHash;
     this.hash = sha256(this.index + this.timestamp + this.data + this.prevHash);
+  }
+
+  isValid(){
+    if (this.hash === sha256(this.index + this.timestamp + this.data + this.prevHash)){
+      return true;
+    }
+    return false;
   }
 }
 

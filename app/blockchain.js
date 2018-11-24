@@ -1,4 +1,5 @@
 const Block = require('./block');
+const ArrayUtils = require('./util/arrayUtils')
 
 class Blockchain {
   constructor(name = 'Blockchain'){
@@ -22,6 +23,9 @@ class Blockchain {
   }
   createGenesisBlock(){
     return new Block(0, Date.now(), 'Genesis Block', '0');
+  }
+  isChainValid(){
+    return this.chain.every(block => block.isValid())
   }
 }
 
